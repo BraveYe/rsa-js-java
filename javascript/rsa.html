@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <title>RSA加密，解密</title>
+  <script src="./jsencrypt.js" type="text/javascript">
+</script>
+  <script type="text/javascript">
+  function rsaButton(){
+	  //公钥
+	  var PUBLIC_KEY = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlUIwMnhN2IwUtyYLfbPCllhzKgirr7+aNOgqxy6fqlq2ll+waPaVmdUF27t2+4osnmdOHkMPu0yWJHKqsBeNNMTdDpCFVp2HUWEiFKifZRpsAMvwQGDDZj4mKGlVF7p5eLVXO+OnnaPwaw911HwFbnpIQivqZLwzhbvy3DUZh4Gc2/Hxb7mbquZYtx/4ZXvPPNS9wQ613PSlYUMHBbqMC7d1gQFL1c/FRuUV/nVvi9q4bthueI9vFUKRKphBjlMo7SykDAza+QQpgpueZlABJNDcLrWlu9nrkBFEb+D0XtA9ViGl5p3NPzlfIMWKC6j3vFnmDO3qmD9YsVdoFgY3GQIDAQAB';
+	  //私钥
+	  var PRIVATE_KEY = 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCVQjAyeE3YjBS3Jgt9s8KWWHMqCKuvv5o06CrHLp+qWraWX7Bo9pWZ1QXbu3b7iiyeZ04eQw+7TJYkcqqwF400xN0OkIVWnYdRYSIUqJ9lGmwAy/BAYMNmPiYoaVUXunl4tVc746edo/BrD3XUfAVuekhCK+pkvDOFu/LcNRmHgZzb8fFvuZuq5li3H/hle8881L3BDrXc9KVhQwcFuowLt3WBAUvVz8VG5RX+dW+L2rhu2G54j28VQpEqmEGOUyjtLKQMDNr5BCmCm55mUAEk0NwutaW72euQEURv4PRe0D1WIaXmnc0/OV8gxYoLqPe8WeYM7eqYP1ixV2gWBjcZAgMBAAECggEAdjNgb9eN7nugvBnI59c/tkh9i0Aqlpepy1RA7FQj5YjJJ/THg5gjiRuF9ClVZIZcJ2WwG48IGk/gZyTXv3QnQy7T0QDqV1mRHAVMNAgFks+F0Guw64q1s3ZsSXyBArWOFOWnG6qBxvlZH6+ypH9C3ebA6oZUrUnNk47wGSuD+CabDVo9h8CouZMAnEQyMAKKbosTGHCRh8VR5M5ii1WjUfWBt4ELnkdT89B4UmI5DkP+aW/yN5pJteeTIIrIcABEgid0dnw7/E4ZWrLlMm72wY+E0D07H2/O48IC5aFo1eioXweELmqaUfG5NEBBBaraxdqhy+zktx1Wkp7pJI/4wQKBgQDJoNfM7GwStqBq/Pvj3tw6WpQlJvSV2se6LSj6fmDpUgq/rJmmocqY2B+J6w9ZRzfeJOHaNXtu6qjwr7q4PGjPwQO3ymb7xx2j2VxitWRijHK18Goyhs2Pbixn5NF3rQbR1pML96wzP69sEXkMg8kkFWiUxauxa6cvNpB92xNg7QKBgQC9ghDBrJtyh5SfL0F3VX3PophZIdP+dyReCvZ6fyQ2d6c1BpC1U37ClYoedcz7pkuzacvTTWoOufQp9bJNduLtX8tKONhFPLPOo66NP9h0oFjovs638bHJXHf6FMawpciPbbiwmAm6X3KIqh1oXtYExuYSrm9Dq6/ARzHfsmjlXQKBgDxNt91ZZKVgK7B0A55OnE1zo9VMxmA/c/bx5MyumauO1xomtDnLL/3wvdYREKEiFMqC+225CzbMRkTeOhk6MBra3pLMnWp2Th4gN2pqWCDFYtWZlxmPidF5IRzdqeyCOoTuCULOC5m0VXIb87lTfQgmwwWj7Ur+KJ2NUz/hEvWtAoGAVrAXsDCgDxz8HHFGdisyWPfczvENg5rGlQpYw6JDU3MalsQBECE4nBRB0Ts74GWqvVCI/4irGj9v9H3C6XKXzdQDL1mffNSOv9jaMRzijD8JTLZz42r5U84rx8cXOJktjIa5dHaoBIxC3UdMGoE/T4IYnrUSipcP11n584UuPLUCgYABP1V/oSEGW5RK6UJGPxpNY2X1V7v/Uw2Fv1CsuMvQAy06h532UNx53N8XUjW5dQA8v2cUy3w5ue9K/H1lZpO7UnViQnMlcEGIXHfv0oqdDOCYq7hzodULgVE0YC0ycR3HsRXlLwAgb9uQSzl9bBAxrTrL7w5k41TJ1/nZ6MNcwQ==';
+	  //使用公钥加密
+	  var encrypt = new JSEncrypt();
+	  //encrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+	  encrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+	  var str = document.getElementById("data").value;
+	  var encrypted = encrypt.encrypt(str);
+	  console.log('加密前数据:%o', str);
+	  console.log('加密后数据:%o', encrypted);
+	  //使用私钥解密
+	  var decrypt = new JSEncrypt();
+	  //decrypt.setPublicKey('-----BEGIN PUBLIC KEY-----' + PUBLIC_KEY + '-----END PUBLIC KEY-----');
+	  decrypt.setPrivateKey('-----BEGIN RSA PRIVATE KEY-----'+PRIVATE_KEY+'-----END RSA PRIVATE KEY-----');
+	  var uncrypted = decrypt.decrypt(encrypted);
+	  console.log('解密后数据:%o', uncrypted);
+  }
+  </script>
+</head><!--引入jsencrypt.js-->
+
+<body>
+  <form>
+    <input id="data" type="text" size="40" /><br />
+    <input type="button" onclick="rsaButton()" value="RSA加解密" /><br />
+  </form>
+</body>
+</html>
